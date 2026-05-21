@@ -121,17 +121,29 @@
 			<div class="row gap-4">
 				<div class="col-12 col-md-6 pt-3">
 					<div id="form" aria-label="Contact Form">
-						<form action="https://www.linkedin.com/in/jesiah-catindig/" class="p-3 mx-auto">
-							<label class="d-block" for="full_name">Full Name:</label>
-							<input type="text" name="full_name" id="full_name" required autocomplete placeholder="First Name, MI, Last Name" class="form-control">
+						<form @submit.prevent="submitForm"  class="p-3">
+							<div>
+								<label class="d-block" for="full_name">Full Name:</label>
+								<input type="text" v-model="name" name="full_name" id="full_name" required autocomplete placeholder="First Name, MI, Last Name" class="form-control">
+							</div>
 
-							<label class="d-block" for="email_add">Email Address:</label>
-							<input type="email" name="email_add" id="email_add" required autocomplete placeholder="message@email.com" class="form-control">
+							<div>
+								<label class="d-block" for="email_add">Email Address:</label>
+								<input type="email" v-model="email" name="email_add" id="email_add" required autocomplete placeholder="message@email.com" class="form-control">
+							</div>
 
-							<label class="d-block" for="dm">Message:</label>
-							<textarea name="dm" rows="3" id="dm" class="form-control"></textarea>
+							<div>
+								<label class="d-block" for="dm">Message:</label>
+								<textarea name="dm" v-model="message" rows="3" id="dm" class="form-control"></textarea>
+							</div>
 
-							<button class="d-block mt-2" type="submit">Send message</button>
+							<div>
+								<button type="submit" class="submit-btn pl-5 pr-5" :disabled="isLoading">{{isLoading ? "Sending..." : "Submit"}}</button>
+							</div>
+
+							<div class="d-flex justify-content-end mt-2">
+								<div ref="recaptchaContainer"></div>
+							</div>
 						</form>
 					</div>
 					<div class="socials pt-5" aria-label="Social Media Accounts">
